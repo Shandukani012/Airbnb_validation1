@@ -1,0 +1,54 @@
+<section id="contact" class="contact-clean" style="color: rgb(33, 37, 41);background: rgb(38,38,38);">
+    <h2 class="text-center" style="color: #DEAE05;font-size: 20px;">Contact us</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="shadow-none"   method="post" style="background: rgb(38,38,38);">
+        <label class="form-label" style="color: rgb(229,229,229);font-size: 13px;">Fullnames</label>
+
+
+
+
+        <input class="form-control form-control-sm"    [ngClass]="{ 'is-invalid': submitted && f['fullname'].errors }"  formControlName="fullname" id="fullname" ngModel name="fullname" type="text" style="border-radius: 10px;">
+
+
+       <!-----------vali-->    
+       <div *ngIf="submitted && f['fullname'].errors" class="invalid-feedback">
+        <div *ngIf="f['fullname'].errors['required']">Fullname is required</div>
+      </div>
+        
+   <!-----------vali-->
+        
+        <label class="form-label" style="color: rgb(229,229,229);font-size: 13px;">Email</label>
+        <div class="mb-3">
+            
+            <input class="form-control form-control-sm"    [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"  formControlName="email"    type="email"id="email" ngModel name="email"  style="border-radius: 10px;font-size: 13px;">
+        
+        
+                <!-----------vali-->
+            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                <div *ngIf="f['email'].errors['required']">Email is required</div>
+                <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+              </div>
+           <!-----------vali--> 
+        
+        </div>
+        <label class="form-label" style="color: rgb(229,229,229);font-size: 13px;">Message</label>
+
+        <textarea class="form-control" [ngClass]="{ 'is-invalid': submitted && f['message'].errors }"  formControlName="message"    style="border-radius: 10px;" id="message" ngModel name="message" >
+        
+           
+        
+        </textarea>
+       
+        <div *ngIf="submitted && f['message'].errors" class="invalid-feedback">
+            <div *ngIf="f['message'].errors['required']">Message is required</div>
+            <div *ngIf="f['message'].errors['minlength']">
+                Messege must be at least 10 characters
+              </div>
+              <div *ngIf="f['message'].errors['maxlength']">
+                Messege must not exceed 250 characters
+              </div>
+            </div>
+          
+       
+        <div style="padding-top: 15px;"><button class="btn btn-sm text-capitalize w-100" type="submit"  (click)="onSubmit()" style="background: #DEAE05;border-radius: 10px;color: rgb(255,255,255);">send</button></div>
+    </form>
+</section>
